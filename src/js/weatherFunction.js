@@ -9,11 +9,8 @@ const contentType   = '&contentType=json';
 export async function getWeather(location,unitGroup,date){
     console.log("Api query executing:" + location+";"+unitGroup+";"+date);
     const fullRequest = baseRequest + location +"/"+date+"?unitGroup="+unitGroup+keyString+contentType;
-    console.log(fullRequest);
     const response= await fetch(fullRequest);
-    console.log('response:',response);
     const weatherJson = await response.json();
-    console.log(weatherJson);
     return weatherJson;
 }
 
