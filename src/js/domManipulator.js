@@ -1,4 +1,5 @@
 import { getWeather } from './weatherFunction';
+import { getGif } from './giphyFunction';
 
 export function domInit(){
     //Add Event Listeners
@@ -18,6 +19,21 @@ function validateForm(event){
 }
 
 function changeWeatherValues(temp, conditions,icon){
+    const contentDiv = document.querySelector(".results");
+    contentDiv.innerHTML= '';
+
+    const currTemp = document.createElement('div');
+    currTemp.textContent = temp;
+    contentDiv.appendChild(currTemp);
+
+    const currCond = document.createElement('div');
+    currCond.textContent = conditions;
+    contentDiv.appendChild(currCond);
+
+    const gifImg = document.querySelector('#weatherGif');
+    getGif(icon).then(function(response) {
+        gifImg.src = response.data.images.original.url;
+      });
     console.log(temp);
     console.log(conditions);
     console.log(icon);
@@ -28,7 +44,7 @@ async function getToday (location,unitGroup){
     try {
         const weatherData = await getWeather(location, unitGroup, 'today'); 
         if (weatherData) {
-            changeWeatherValues(weatherData.currentConditions.temp, weatherData.currentConditions.conditions,weatherData.currentConditions.icon);
+            changeWeatherValues(weatherData.currentConditions.temp, weatherData.currentConditions.conditions,weatherData.currentConditions.icon,weatherData.days);
             return 1;
         } else {
             alert("Weather data is unavailable!");
