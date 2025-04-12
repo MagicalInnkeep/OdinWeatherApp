@@ -1,5 +1,7 @@
 import { getWeather } from './weatherFunction';
 import { getGif } from './giphyFunction';
+import partlycloudyday from '../img/partly-cloudy-day.png';
+import clearday from '../img/clear-day.png'
 
 export function domInit(){
     //Add Event Listeners
@@ -14,7 +16,7 @@ export function domInit(){
 
 function validateForm(event){
     event.preventDefault();
-    const currInput =event.target.value.toLowerCase();
+    const currInput =event.target.value.toLowerCase().replace(" ","_");
     getToday(currInput,'metric').then((returnVal) => console.log("returns:"+returnVal));
 }
 
@@ -23,14 +25,35 @@ function changeWeatherValues(temp, conditions,icon){
     contentDiv.innerHTML= '';
 
     const currTemp = document.createElement('div');
-    currTemp.textContent = temp;
+    currTemp.classList.add("currTemp");
+    currTemp.textContent = temp+"°C";
     contentDiv.appendChild(currTemp);
+
+    const currIcon = document.createElement ('img');
+    let imgPath;
+    switch (icon){
+        case "clear-day": imgPath=clearday; break;
+        case "partly-cloudy-day": imgPath=partlycloudyday; break;
+        case "snow": break;
+        case "rain": break;
+        case "fog": break;
+        case "wind": break;
+        case "cloudy": break;
+        case "partly-cloudy-night":	break;
+        case "clear-night": break;
+        default: imgPath=clearday;break;
+    }
+    
+    currIcon.src= imgPath;
+    currIcon.classList.add("currIcon");
+    contentDiv.appendChild(currIcon);
 
     const currCond = document.createElement('div');
     currCond.textContent = conditions;
     contentDiv.appendChild(currCond);
 
     const gifImg = document.querySelector('#weatherGif');
+    gifImg.classList.replace("doorImg","weatherGif");
     getGif(icon).then(function(response) {
         gifImg.src = response.data.images.original.url;
       });
