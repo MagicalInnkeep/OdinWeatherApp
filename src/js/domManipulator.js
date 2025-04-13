@@ -1,7 +1,11 @@
 import { getWeather } from './weatherFunction';
 import { getGif } from './giphyFunction';
 import partlycloudyday from '../img/partly-cloudy-day.png';
-import clearday from '../img/clear-day.png'
+import clearday from '../img/clear-day.png';
+import rain from '../img/rain.png';
+import snow from '../img/snow.png';
+import cloudy from '../img/cloudy.png';
+import clearnight from '../img/clear-night.png'
 
 export function domInit(){
     //Add Event Listeners
@@ -34,16 +38,16 @@ function changeWeatherValues(temp, conditions,icon){
     switch (icon){
         case "clear-day": imgPath=clearday; break;
         case "partly-cloudy-day": imgPath=partlycloudyday; break;
-        case "snow": break;
-        case "rain": break;
+        case "snow": imgPath=snow;break;
+        case "rain": imgPath=rain; break;
         case "fog": break;
         case "wind": break;
-        case "cloudy": break;
+        case "cloudy": imgPath=cloudy;break;
         case "partly-cloudy-night":	break;
-        case "clear-night": break;
+        case "clear-night": imgPath=clearnight; break;
         default: imgPath=clearday;break;
     }
-    
+
     currIcon.src= imgPath;
     currIcon.classList.add("currIcon");
     contentDiv.appendChild(currIcon);

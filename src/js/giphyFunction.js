@@ -15,7 +15,6 @@ export async function getGif(weatherType){
         case "rain": gifID = 'G0Odfjd78JTpu'; break;
         case "fog": gifID = 'izxsokj61KP6f84DPQ'; break;
         case "wind": gifID = 'cBKMTJGAE8y2Y'; break;
-        case "cloudy": gifID= 'xYMTfc3UFuqKTS0NP0'; break;
         case "partly-cloudy-night":	gifID = 'b29IZK1dP4aWs';break;
         case "clear-night": gifID= 'IxlnMFrOLVNp6';break;        
         default:
