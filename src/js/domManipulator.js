@@ -24,7 +24,7 @@ function validateForm(event){
     getToday(currInput,'metric').then((returnVal) => console.log("returns:"+returnVal));
 }
 
-function changeWeatherValues(temp, conditions,icon){
+function changeWeatherValues(temp, conditions,icon, days){
     const contentDiv = document.querySelector(".results");
     contentDiv.innerHTML= '';
 
@@ -34,21 +34,7 @@ function changeWeatherValues(temp, conditions,icon){
     contentDiv.appendChild(currTemp);
 
     const currIcon = document.createElement ('img');
-    let imgPath;
-    switch (icon){
-        case "clear-day": imgPath=clearday; break;
-        case "partly-cloudy-day": imgPath=partlycloudyday; break;
-        case "snow": imgPath=snow;break;
-        case "rain": imgPath=rain; break;
-        case "fog": break;
-        case "wind": break;
-        case "cloudy": imgPath=cloudy;break;
-        case "partly-cloudy-night":	break;
-        case "clear-night": imgPath=clearnight; break;
-        default: imgPath=clearday;break;
-    }
-
-    currIcon.src= imgPath;
+    currIcon.src= getImage(icon);
     currIcon.classList.add("currIcon");
     contentDiv.appendChild(currIcon);
 
@@ -61,6 +47,10 @@ function changeWeatherValues(temp, conditions,icon){
     getGif(icon).then(function(response) {
         gifImg.src = response.data.images.original.url;
       });
+
+    for(var i=0; i<=5; i++){
+        console.log('day '+(i+1)+': '+days[i]);
+    }
     console.log(temp);
     console.log(conditions);
     console.log(icon);
@@ -83,4 +73,21 @@ async function getToday (location,unitGroup){
         return 3;
     }
 
+}
+
+function getImage(icon){
+    let imgPath;
+    switch (icon){
+        case "clear-day": imgPath=clearday; break;
+        case "partly-cloudy-day": imgPath=partlycloudyday; break;
+        case "snow": imgPath=snow;break;
+        case "rain": imgPath=rain; break;
+        case "fog": break;
+        case "wind": break;
+        case "cloudy": imgPath=cloudy;break;
+        case "partly-cloudy-night":	break;
+        case "clear-night": imgPath=clearnight; break;
+        default: imgPath=clearday;break;
+    }
+    return imgPath;
 }

@@ -87,6 +87,7 @@ input{
     font-size: 14px;
     background-color: var(--bg-color);
     color: var(--text-color);
+    text-align: center;
 }
 
 .results{
