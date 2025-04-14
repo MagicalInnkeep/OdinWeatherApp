@@ -6,6 +6,9 @@ import rain from '../img/rain.png';
 import snow from '../img/snow.png';
 import cloudy from '../img/cloudy.png';
 import clearnight from '../img/clear-night.png'
+import foggy from '../img/foggy.png';
+import windy from '../img/windy.png';
+import cloudynight from '../img/cloudy-night.png';
 
 export function domInit(){
     //Add Event Listeners
@@ -80,14 +83,14 @@ function getImage(icon){
     switch (icon){
         case "clear-day": imgPath=clearday; break;
         case "partly-cloudy-day": imgPath=partlycloudyday; break;
-        case "snow": imgPath=snow;break;
+        case "snow": imgPath=snow; break;
         case "rain": imgPath=rain; break;
-        case "fog": break;
-        case "wind": break;
-        case "cloudy": imgPath=cloudy;break;
-        case "partly-cloudy-night":	break;
+        case "fog": imgPath=foggy; break;
+        case "wind": imgPath=windy; break;
+        case "cloudy": imgPath=cloudy; break;
+        case "partly-cloudy-night":	imgPath=cloudynight; break;
         case "clear-night": imgPath=clearnight; break;
-        default: imgPath=clearday;break;
+        default: imgPath=clearday; break;
     }
     return imgPath;
 }
