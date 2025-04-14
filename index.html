@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
     <title>WeatherWizard</title>
 <script defer src="main.js"></script></head>
 <body>
     <div class="content">
-        <div class="weatherScene"></div>
+        <div class="weatherScene">
+            <img id="weatherGif" class="doorImg" src="6bb33655b47ac7490dcc.jpg">
+        </div>
         <div class="weatherContent">
-            <form id="askLocation">
-                <label for="locQuery">Weather info for </label>
-                <input id="locQuery">
+            <form onsubmit="javascript:return false">
+                <label for="locQuery">Weather info for</label>
+                <input id="locQuery" type="text" novalidate>
             </form>
             <div class="results">
                 
